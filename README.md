@@ -265,7 +265,7 @@ examplesフォルダに、ポケモン剣盾で使えるサンプルコードを
   - 詳細はこちら → [【マイコン】ダイマックスアドベンチャーを自動化！エンドレスモードの周回でマックス鉱石稼ぎ！｜ポケモニット](https://pokemonit.com/dynamax-adventure/)
 - **battle-tower-automation**
   - バトルタワーでのBP稼ぎを自動化するコード！（『冠の雪原』に対応）
-  - 詳細はこちら → [](https://pokemonit.com/swsh-battle-tower-automation/)
+  - 詳細はこちら → [【マイコン】ポケモン剣盾のバトルタワーでのBP稼ぎを自動化！『冠の雪原』に対応の最新版！｜ポケモニット](https://pokemonit.com/swsh-battle-tower-automation/)
 
 ## 🎁 さいごに
 
