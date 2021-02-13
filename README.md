@@ -263,6 +263,9 @@ examplesフォルダに、ポケモン剣盾で使えるサンプルコードを
 - **dynamax-adventure**
   - ダイマックスアドベンチャーのエンドレスモードを自動で攻略し、マックスこうせきを稼ぐコード！
   - 詳細はこちら → [【マイコン】ダイマックスアドベンチャーを自動化！エンドレスモードの周回でマックス鉱石稼ぎ！｜ポケモニット](https://pokemonit.com/dynamax-adventure/)
+- **battle-tower-automation**
+  - バトルタワーでのBP稼ぎを自動化するコード！（『冠の雪原』に対応）
+  - 詳細はこちら → [](https://pokemonit.com/swsh-battle-tower-automation/)
 
 ## 🎁 さいごに
 
