@@ -88,7 +88,7 @@ void sendHatchedPoemonToBox(int box_line) {
 }
 
 // 実際にループ内で呼び出す関数
-void reciveAndHatchEggs(int box_line) {
+void receiveAndHatchEggs(int box_line) {
     // 手持ちが1体の状態から、卵受け取り→孵化を繰り返していく
     for (int egg_num = 0; egg_num < 5; egg_num++) {
         moveToInitialPlayerPosition();
@@ -138,6 +138,6 @@ void setup() {
 // ここに記述した内容がループされ続ける
 void loop() {
     for (int box_line = 0; box_line < 6; box_line++) {
-        reciveAndHatchEggs(box_line);
+        receiveAndHatchEggs(box_line);
     }
 }
