@@ -59,7 +59,7 @@ void waitEggHatching() {
 
 // 孵化した手持ちのポケモンをボックスに預ける関数
 // box_line : 何列目にポケモンを預けるか
-void sendHatchedPoemonToBox(int box_line) {
+void sendHatchedPokemonToBox(int box_line) {
     // ボックスを開く
     pushButton(Button::X, 500);
     pushHat(Hat::RIGHT, 25);
@@ -106,7 +106,7 @@ void receiveAndHatchEggs(int box_line) {
         // 手持ちがいっぱいになったときの処理
         if (egg_num == 4) {
             // ボックスに預ける処理を呼び出す
-            sendHatchedPoemonToBox(box_line);
+            sendHatchedPokemonToBox(box_line);
             // 手持ちがいっぱいでない場合は、メニューを開いてからループに戻る
         } else {
             pushButton(Button::X, 500);
