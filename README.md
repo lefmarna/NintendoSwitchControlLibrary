@@ -234,39 +234,6 @@ SwitchControlLibrary().releaseHatButton();      // ※SwitchControlLibraryと異
 SwitchControlLibrary().sendReport();            // B、X、↑ボタンを同時に離す
 ```
 
-## 🎮 サンプルコード
-
-examplesフォルダに、ポケモン剣盾で使えるサンプルコードをまとめています。その中でも選りすぐりのものを紹介します。
-
-### 自動孵化
-
-自動孵化のコードは3つ用意しています。中でも、**auto-hatch-eggs**のコードはかなり研究したものなのですごく自信があります。
-
-1. **auto-hatch-eggs.ino**
-   - 一度書き込んでしまえば、どんなポケモンでも効率的に自動孵化が行える汎用的なコード！
-   - 詳細はこちら → [【マイコン】どんなポケモンでも効率的に自動孵化させる汎用コードを作ってみた【剣盾】｜ポケモニット](https://pokemonit.com/swsh-auto-hatch-eggs/)
-2. **auto-hatch-eggs_shiny.ino**
-   - 色違いを狙う際など、特定のポケモンをピンポイントで孵化させるのに最適なコード！
-   - 詳細はこちら → [【マイコン】ポケモン剣盾で自動孵化！色違いの厳選に最適なコードを紹介！｜ポケモニット](https://pokemonit.com/swsh-auto-hatch-eggs-2/)
-3. **hatch-eggs-in-the-box.ino**
-   - タマゴは受け取らずに、ボックスにあるタマゴをひたすら割っていくコード！
-   - 詳細はこちら → [【マイコン】ポケモン剣盾のボックスに眠っているタマゴを孵化していくコード！｜ポケモニット](https://pokemonit.com/swsh-hatch-eggs-in-the-box/)
-
-### その他のコード
-
-- **auto-gain-watt.ino**
-  - 自動ワット稼ぎのコード！（ランクバトルを行っていない状態での自動化プログラムとなります。）
-  - 詳細はこちら → [【マイコン】ポケモン剣盾のワット稼ぎを自動化！スイッチのVer11以降に対応！｜ポケモニット](https://pokemonit.com/swsh-auto-gain-watt/)
-- **dracovish.ino**
-  - ウオノラゴンの受け取りを自動化するコード！
-  - 詳細はこちら → [【マイコン】ウオノラゴンの受け取りを自動化！｜ポケモニット](https://pokemonit.com/swsh-auto-dracovish/)
-- **dynamax-adventure**
-  - ダイマックスアドベンチャーのエンドレスモードを自動で攻略し、マックスこうせきを稼ぐコード！
-  - 詳細はこちら → [【マイコン】ダイマックスアドベンチャーを自動化！エンドレスモードの周回でマックス鉱石稼ぎ！｜ポケモニット](https://pokemonit.com/dynamax-adventure/)
-- **battle-tower-automation**
-  - バトルタワーでのBP稼ぎを自動化するコード！（『冠の雪原』に対応）
-  - 詳細はこちら → [【マイコン】ポケモン剣盾のバトルタワーでのBP稼ぎを自動化！『冠の雪原』に対応の最新版！｜ポケモニット](https://pokemonit.com/swsh-battle-tower-automation/)
-
 ## 🎁 さいごに
 
 このライブラリは暫定的なものなので、要望や改善案、追加してほしい機能などありましたら、[Issues](https://github.com/lefmarna/NintendoSwitchControlLibrary/issues)から気軽に投げかけてくださいませ。
