@@ -13,6 +13,26 @@
 // ライブラリを読み込むためのコード
 #include <NintendoSwitchControlLibrary.h>
 
+// Nintendo Switchのシステムバージョンを設定する
+const int SWITCH_SYSTEM_VERSION = 13;
+
+// Nintendo Switch Liteの場合はtrueを設定する
+const bool IS_SWITCH_LITE = false;
+
+// ホーム画面にSwitchのVer11から登場した Nintendo Switch Onlineのメニューが存在するか
+bool hasNintendoSwitchOnlineMenu(int systemVersion) {
+    return systemVersion >= 11;
+}
+
+// 設定 > 本体 に ドックの更新 メニューが存在するか
+bool hasDockUpdateMenu(int systemVersion, bool isSwitchLite) {
+    if (isSwitchLite) {
+      return false;
+    } else {
+      return systemVersion >= 13;
+    }
+}
+
 // ワットを回収するシーケンス
 void execWattGainSequence() {
     // 募集開始
@@ -20,12 +40,20 @@ void execWattGainSequence() {
     // ホーム画面 > 設定
     pushButton(Button::HOME, 500);
     pushHat(Hat::DOWN, 25);
-    pushHat(Hat::RIGHT, 25, 5);  // SwitchのVer11〜に対応。11未満の場合は、最後の5を4にする必要がある
+    if (hasNintendoSwitchOnlineMenu(SWITCH_SYSTEM_VERSION)) {
+      pushHat(Hat::RIGHT, 25, 5);
+    } else {
+      pushHat(Hat::RIGHT, 25, 4);
+    }
     pushButton(Button::A, 100);
     // 設定 > 本体 > 日付と時刻
     holdHat(Hat::DOWN, 2000);
     pushHat(Hat::RIGHT, 25);
-    pushHat(Hat::DOWN, 25, 4);
+    if (hasDockUpdateMenu(SWITCH_SYSTEM_VERSION, IS_SWITCH_LITE)) {
+      pushHat(Hat::DOWN, 25, 9);
+    } else {
+      pushHat(Hat::DOWN, 25, 4);
+    }
     pushButton(Button::A, 200);
     // 日付と時刻 > 現在の日付と時刻
     pushHat(Hat::DOWN, 25, 2);
