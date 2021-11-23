@@ -192,7 +192,7 @@ Arduino IDE やボードのバージョンは、基本的に最新の安定版�
     ```
     tiltRightStick(255, 128, 100);                                 // 右スティックを右に0.1秒間倒す
     tiltRightStick(Stick::MAX, Stick::MIN, 10000);                 // 右スティックを右上に10秒間倒す
-    tiltRightStick(Stick::NEUTRAL, Stick::MAX, 30000, Button::X); // Xボタンを連打しながら、右スティックを下に30秒間倒す
+    tiltRightStick(Stick::NEUTRAL, Stick::MAX, 30000, Button::X);  // Xボタンを連打しながら、右スティックを下に30秒間倒す
     ```
 
 - 左右のスティックを同時に操作するコマンド
@@ -209,8 +209,8 @@ Arduino IDE やボードのバージョンは、基本的に最新の安定版�
   - 使用例
 
     ```
-    tiltLeftAndRightStick(128, 255, 0, 128, 1000);                                  // 左スティックを下に、右スティックを左に1秒間倒す
-    tiltLeftAndRightStick(Stick::MAX, Stick::MAX, Stick::MIN, Stick::MIN, 30000);   // 左スティックを右下に、右スティックは左上に、30秒間倒す
+    tiltLeftAndRightStick(128, 255, 0, 128, 1000);                                                // 左スティックを下に、右スティックを左に1秒間倒す
+    tiltLeftAndRightStick(Stick::MAX, Stick::MAX, Stick::MIN, Stick::MIN, 30000);                 // 左スティックを右下に、右スティックは左上に、30秒間倒す
     tiltLeftAndRightStick(Stick::NEUTRAL, Stick::MAX, Stick::MIN, Stick::MAX, 2000, Button::B);   // Bボタンを連打しながら、左スティックを下に、右スティックは左下に、2秒間倒す
     ```
 
