@@ -6,27 +6,27 @@ Arduino を使って Nintendo Switch のゲームを自動化する、マイコ�
 
 ## ⭐️ このライブラリについて
 
-このライブラリはcelclow氏の[SwitchControlLibrary](https://github.com/celclow/SwitchControlLibrary)を参考にして作られています。
+このライブラリは celclow 氏の[SwitchControlLibrary](https://github.com/celclow/SwitchControlLibrary)を参考にして作られています。
 
-SwitchControlLibraryは自由度が高いものの、コードが冗長になりやすい点、ArduinoSTLを使用するためコンパイルに時間がかかる点などがネックでした。
+SwitchControlLibrary は自由度が高いものの、コードが冗長になりやすい点、ArduinoSTL を使用するためコンパイルに時間がかかる点などがネックでした。
 
 そこで、一般的によく使われる入力のパターンを厳選して関数にまとめることにしました。
 
-ボタンを押して離すまでの処理が1行で書けるようになり、より効率的に自動化プログラムを組むことができるようになります。連打や長押しの処理にも対応させ、汎用性の高いプログラムに仕上げました。
+ボタンを押して離すまでの処理が 1 行で書けるようになり、より効率的に自動化プログラムを組むことができるようになります。連打や長押しの処理にも対応させ、汎用性の高いプログラムに仕上げました。
 
-そしてなにより、ArduinoSTLを使わずにこれらの処理を実装することに成功しています。これによりコンパイルが高速に行えるほか、依存関係に悩まされなくなっていることも特徴です。
+そしてなにより、ArduinoSTL を使わずにこれらの処理を実装することに成功しています。これによりコンパイルが高速に行えるほか、依存関係に悩まされなくなっていることも特徴です。
 
 ## 🔹 導入方法
 
 ### 必要なもの
 
 - Arduino Leonardo
-- USBケーブル（Arduino LeonardoとSwitchやPCを接続するのに必要）
+- USB ケーブル（Arduino Leonardo と Switch や PC を接続するのに必要）
 
 ### 動作環境
 
-- Arduino IDE（1.8.13推奨）
-- Arduino AVR Boards（1.8.3推奨）
+- Arduino IDE（1.8.13 推奨）
+- Arduino AVR Boards（1.8.3 推奨）
 
 詳しい導入の手順については、ブログで解説していますので、そちらをご覧ください。
 
@@ -34,11 +34,11 @@ SwitchControlLibraryは自由度が高いものの、コードが冗長になり
 
 ## ⚠️ 注意点
 
-Arduino Leonardo については、ブログ内で紹介しているものを推奨しています。その他のArduinoでは動作確認を行っておりません。異なるものを使用している場合には、質問にも一切答えられませんので予めご了承ください。
+Arduino Leonardo については、ブログ内で紹介しているものを推奨しています。その他の Arduino では動作確認を行っておりません。異なるものを使用している場合には、質問にも一切答えられませんので予めご了承ください。
 
-Arduino IDEやボードのバージョンは、基本的に最新の安定版のものを使って動作確認しています。古いバージョンでも使えるとは思いますが、動作を保証するものではありません。
+Arduino IDE やボードのバージョンは、基本的に最新の安定版のものを使って動作確認しています。古いバージョンでも使えるとは思いますが、動作を保証するものではありません。
 
-なお、Nintendo Switchのバージョンには指定がありません。どのバージョンでも問題なく動作するはずです。
+なお、Nintendo Switch のバージョンには指定がありません。どのバージョンでも問題なく動作するはずです。
 
 ## 📄 使い方
 
@@ -52,22 +52,22 @@ Arduino IDEやボードのバージョンは、基本的に最新の安定版の
 
 単体で完結しているため、ArduinoSTL や [SwitchControlLibrary](https://github.com/celclow/SwitchControlLibrary) といった別のライブラリを読み込む必要はありません。
 
-**SwitchControlLibrary とは競合するため、同時に読み込むことはできません**が、NintendoSwitchControlLibrary は SwitchControlLibrary（v2 系）を継承して作られているため、SwitchControlLibraryのコマンドも使用することが可能となっています。（ArduinoSTLを使用していない都合で、十字キーのコマンドのみ動作が少し異なりますが、基本的には同じように使うことができます）
+**SwitchControlLibrary とは競合するため、同時に読み込むことはできません**が、NintendoSwitchControlLibrary は SwitchControlLibrary（v2 系）を継承して作られているため、SwitchControlLibrary のコマンドも使用することが可能となっています。（ArduinoSTL を使用していない都合で、十字キーのコマンドのみ動作が少し異なりますが、基本的には同じように使うことができます）
 
 ## ⌨️ コマンド一覧
 
 ### ボタン
 
 - ボタンを押すコマンド（連打にも対応）
-  
+
   - `pushButton(uint16_t button, int delay_time = 0, int loop = 1)`
-  
+
     - button: 押すボタン
-    - delay_time: ボタンを押した後の待ち時間（1秒 = 1000）
-    - loop: ボタンを押す回数（省略可、デフォルトは1）
-  
+    - delay_time: ボタンを押した後の待ち時間（1 秒 = 1000）
+    - loop: ボタンを押す回数（省略可、デフォルトは 1）
+
   - 使用例
-  
+
     ```
     pushButton(Button::HOME);        // HOMEボタンを入力する
     pushButton(Button::A, 500);      // Aボタンを入力後、0.5秒待機する
@@ -75,14 +75,14 @@ Arduino IDEやボードのバージョンは、基本的に最新の安定版の
     ```
 
 - ボタンを長押しするコマンド
-  
+
   - `holdButton(uint16_t button, int hold_time)`
-  
+
     - button: 押し続けるボタン
-    - hold_time: ボタンを押す時間の長さ（1秒 = 1000）
-  
+    - hold_time: ボタンを押す時間の長さ（1 秒 = 1000）
+
   - 使用例
-  
+
     ```
     holdButton(Button::L, 2000);       // Lボタンを2秒間押し続けてから離す
     holdButton(Button::CAPTURE, 1500); // キャプチャーボタンを1.5秒間押し続けてから離す
@@ -112,10 +112,10 @@ Arduino IDEやボードのバージョンは、基本的に最新の安定版の
 - 十字キー（方向ボタン）を押すコマンド（連打にも対応）
 
   - `pushHat(uint8_t hat, int delay_time = 0, int loop = 1);`
-  
+
     - hat: 押す十字キーのボタン
-    - delay_time: ボタンを押した後の待ち時間（1秒 = 1000）
-    - loop: ボタンを押す回数（省略可、デフォルトは1）
+    - delay_time: ボタンを押した後の待ち時間（1 秒 = 1000）
+    - loop: ボタンを押す回数（省略可、デフォルトは 1）
 
   - 使用例
 
@@ -124,16 +124,16 @@ Arduino IDEやボードのバージョンは、基本的に最新の安定版の
     pushHat(Hat::LEFT, 1000);  // 左キーを入力後、1秒待機する
     pushHat(Hat::DOWN, 25, 5); // 0.25秒おきに下キーを入力する、それを5回繰り返す
     ```
-    
+
 - 十字キー（方向ボタン）を長押しするコマンド
 
   - `holdHat(uint8_t hat, int hold_time);`
-  
+
     - hat: 押し続ける十字キーのボタン
-    - hold_time: ボタンを押す時間の長さ（1秒 = 1000）
+    - hold_time: ボタンを押す時間の長さ（1 秒 = 1000）
 
   - 使用例
-  
+
     ```
     holdHat(Hat::RIGHT, 5000);   // 右キーを5秒間押し続けてから離す
     holdHat(Hat::UP_LEFT, 2500); // 十字キーを左上方向に2.5秒間押し続けてから離す
@@ -141,69 +141,77 @@ Arduino IDEやボードのバージョンは、基本的に最新の安定版の
 
 - `Hat` 定義一覧
 
-    ```
-    Hat::UP
-    Hat::UP_RIGHT
-    Hat::RIGHT
-    Hat::DOWN_RIGHT
-    Hat::DOWN
-    Hat::DOWN_LEFT
-    Hat::LEFT
-    Hat::UP_LEFT
-    Hat::NEUTRAL
-    ```
+  ```
+  Hat::UP
+  Hat::UP_RIGHT
+  Hat::RIGHT
+  Hat::DOWN_RIGHT
+  Hat::DOWN
+  Hat::DOWN_LEFT
+  Hat::LEFT
+  Hat::UP_LEFT
+  Hat::NEUTRAL
+  ```
 
 ### スティック
 
-スティックの座標は、128を基点として 0〜255 の値を指定します。
+スティックの座標は、128 を基点として 0〜255 の値を指定します。
 
-0・128・255 の3つの値はStickで定義されているため、置き換えて使用することもできます（0 = MIN, NEUTRAL = 128, MAX = 255）
+0・128・255 の 3 つの値は Stick で定義されているため、置き換えて使用することもできます（0 = MIN, NEUTRAL = 128, MAX = 255）
+
+また、引数にボタンを渡すことでボタンを連打しながらスティックを傾ける操作を行うことができます。
 
 - 左スティックを操作するコマンド
 
-  - `tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time);`
-  
-    - lx: 左スティックのx軸
-    - ly: 左スティックのy軸
+  - `tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button = NULL);`
+
+    - lx: 左スティックの x 軸
+    - ly: 左スティックの y 軸
     - tilt_time: スティックを傾ける時間の長さ
+    - button: 連打するボタン
 
   - 使用例
-  
+
     ```
-    tiltLeftStick(0, 128, 5000);                      // 左スティックを左に5秒間倒す
-    tiltLeftStick(Stick::NEUTRAL, Stick::MAX, 15000); // 左スティックを下に15秒間倒す
+    tiltLeftStick(0, 128, 5000);                                // 左スティックを左に5秒間倒す
+    tiltLeftStick(Stick::NEUTRAL, Stick::MAX, 15000);           // 左スティックを下に15秒間倒す
+    tiltLeftStick(Stick::NEUTRAL, Stick::MIN, 8000, Button::A); // Aボタンを連打しながら、左スティックを上に8秒間倒す
     ```
 
 - 右スティックを操作するコマンド
 
-  - `tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time);`
-  
-    - rx: 右スティックのx軸
-    - ry: 右スティックのy軸
+  - `tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button = NULL);`
+
+    - rx: 右スティックの x 軸
+    - ry: 右スティックの y 軸
     - tilt_time: スティックを傾ける時間の長さ
+    - button: 連打するボタン
 
   - 使用例
-  
+
     ```
-    tiltRightStick(255, 128, 100);                 // 右スティックを右に0.1秒間倒す
-    tiltRightStick(Stick::MAX, Stick::MIN, 10000); // 右スティックを右上に10秒間倒す
+    tiltRightStick(255, 128, 100);                                 // 右スティックを右に0.1秒間倒す
+    tiltRightStick(Stick::MAX, Stick::MIN, 10000);                 // 右スティックを右上に10秒間倒す
+    tiltRightStick(Stick::NEUTRAL, Stick::MAX, 30000, Button::X); // Xボタンを連打しながら、右スティックを下に30秒間倒す
     ```
 
 - 左右のスティックを同時に操作するコマンド
 
-  - `tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry, int tilt_time);`
-  
-    - lx: 左スティックのx軸
-    - ly: 左スティックのy軸  
-    - rx: 右スティックのx軸
-    - ry: 右スティックのy軸
+  - `tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry, int tilt_time, uint16_t button = NULL);`
+
+    - lx: 左スティックの x 軸
+    - ly: 左スティックの y 軸
+    - rx: 右スティックの x 軸
+    - ry: 右スティックの y 軸
     - tilt_time: スティックを傾ける時間の長さ
+    - button: 連打するボタン
 
   - 使用例
-  
+
     ```
-    tiltLeftAndRightStick(128, 255, 0, 128, 1000);                                  // 左スティックを下に、右スティックを左に10秒間倒す
+    tiltLeftAndRightStick(128, 255, 0, 128, 1000);                                  // 左スティックを下に、右スティックを左に1秒間倒す
     tiltLeftAndRightStick(Stick::MAX, Stick::MAX, Stick::MIN, Stick::MIN, 30000);   // 左スティックを右下に、右スティックは左上に、30秒間倒す
+    tiltLeftAndRightStick(Stick::NEUTRAL, Stick::MAX, Stick::MIN, Stick::MAX, 2000, Button::B);   // Bボタンを連打しながら、左スティックを下に、右スティックは左下に、2秒間倒す
     ```
 
 - `Stick` 定義一覧
@@ -214,9 +222,9 @@ Arduino IDEやボードのバージョンは、基本的に最新の安定版の
   Stick::MAX
   ```
 
-### SwitchControlLibraryを使ったその他のコマンド
+### SwitchControlLibrary を使ったその他のコマンド
 
-このライブラリはSwitchControlLibraryのコマンドも内蔵しているため、合わせて使用することもできます。（**v2 系を採用しています。v1 系とは互換性がないことに注意してください**）
+このライブラリは SwitchControlLibrary のコマンドも内蔵しているため、合わせて使用することもできます。（**v2 系を採用しています。v1 系とは互換性がないことに注意してください**）
 
 上記のもので対応できないものがある場合には、活用してみるといいかもしれません。
 
