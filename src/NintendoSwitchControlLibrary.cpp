@@ -8,6 +8,8 @@ https://opensource.org/licenses/mit-license.php
 
 // ボタンを押してから離すまでの時間（ミリ秒）
 const uint16_t INPUT_TIME = 100;
+// ボタンを連打する際に、押して認識後、離して認識するまでの合計時間（ミリ秒）
+const uint16_t INPUT_TIME_TWICE = INPUT_TIME * 2;
 
 void pushButton(uint16_t button, int delay_time, int loop) {
     /*
@@ -85,16 +87,19 @@ void holdHat(uint8_t hat, int hold_time) {
     delay(INPUT_TIME);
 }
 
-void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time) {
+void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button = NULL) {
     /*
     Switchコントローラーの左スティックを指定の時間傾け続ける関数
     128を基準とし、0~255の値を指定する
+
+    ボタンを指定すると、そのボタンを連打しながらスティックを倒し続ける動作となる
 
     Parameters
     -------------------
         lx: 左スティックのx軸
         ly: 左スティックのy軸
         tilt_time: スティックを傾ける時間の長さ
+        button: 連打するボタン
 
     Options
     -------------------
@@ -104,22 +109,36 @@ void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time) {
     */
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().sendReport();
+    if (button) {
+        while (INPUT_TIME_TWICE <= tilt_time) {
+            SwitchControlLibrary().pressButton(button);
+            SwitchControlLibrary().sendReport();
+            delay(INPUT_TIME);
+            SwitchControlLibrary().releaseButton(button);
+            SwitchControlLibrary().sendReport();
+            delay(INPUT_TIME);
+            tilt_time -= INPUT_TIME_TWICE;
+        }
+    }
     delay(tilt_time);
     SwitchControlLibrary().moveLeftStick(Stick::NEUTRAL, Stick::NEUTRAL);
     SwitchControlLibrary().sendReport();
     delay(INPUT_TIME);
 }
 
-void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time) {
+void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button = NULL) {
     /*
     Switchコントローラーの右スティックを指定の時間傾け続ける関数
     128を基準とし、0~255の値を指定する
+
+    ボタンを指定すると、そのボタンを連打しながらスティックを倒し続ける動作となる
 
     Parameters
     -------------------
         rx: 右スティックのx軸
         ry: 右スティックのy軸
         tilt_time: スティックを傾ける時間の長さ
+        button: 連打するボタン
 
     Options
     -------------------
@@ -129,6 +148,17 @@ void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time) {
     */
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
+    if (button) {
+        while (INPUT_TIME_TWICE <= tilt_time) {
+            SwitchControlLibrary().pressButton(button);
+            SwitchControlLibrary().sendReport();
+            delay(INPUT_TIME);
+            SwitchControlLibrary().releaseButton(button);
+            SwitchControlLibrary().sendReport();
+            delay(INPUT_TIME);
+            tilt_time -= INPUT_TIME_TWICE;
+        }
+    }
     delay(tilt_time);
     SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::NEUTRAL);
     SwitchControlLibrary().sendReport();
@@ -136,10 +166,12 @@ void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time) {
 }
 
 void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
-                           int tilt_time) {
+                           int tilt_time, uint16_t button = NULL) {
     /*
     Switchコントローラーの左スティックと右スティックを同時に指定の時間傾け続ける関数
     128を基準とし、0~255の値を指定する
+
+    ボタンを指定すると、そのボタンを連打しながらスティックを倒し続ける動作となる
 
     Parameters
     -------------------
@@ -148,6 +180,7 @@ void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
         rx: 右スティックのx軸
         ry: 右スティックのy軸
         tilt_time: スティックを傾ける時間の長さ
+        button: 連打するボタン
 
     Options
     -------------------
@@ -158,6 +191,17 @@ void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
+    if (button) {
+        while (INPUT_TIME_TWICE <= tilt_time) {
+            SwitchControlLibrary().pressButton(button);
+            SwitchControlLibrary().sendReport();
+            delay(INPUT_TIME);
+            SwitchControlLibrary().releaseButton(button);
+            SwitchControlLibrary().sendReport();
+            delay(INPUT_TIME);
+            tilt_time -= INPUT_TIME_TWICE;
+        }
+    }
     delay(tilt_time);
     SwitchControlLibrary().moveLeftStick(Stick::NEUTRAL, Stick::NEUTRAL);
     SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::NEUTRAL);
