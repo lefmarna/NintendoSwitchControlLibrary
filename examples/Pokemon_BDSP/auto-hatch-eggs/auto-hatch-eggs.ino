@@ -20,8 +20,16 @@
 // 孵化サイクルを設定する
 const int EGG_CYCLE = 40;
 
-// 孵化するまでに自転車で走り回る時間（試行錯誤の末にこのような形となったが、まだ練りきれていないところがある）
-const int TIME_TO_HATCHING_SEC = (EGG_CYCLE * 10) - 10;
+// 孵化するまでに自転車で走り回る時間を計算する（試行錯誤の末にこのような形となったが、まだ練りきれていないところがある）
+int calcTimeToHatchingSec() {
+    // 孵化サイクル35では計算が合わなかったため、個別に指定している
+    if (EGG_CYCLE == 35) return 345;
+
+    return (EGG_CYCLE * 10) - 10;
+}
+
+// 孵化するまでに自転車で走り回る時間
+const int TIME_TO_HATCHING_SEC = calcTimeToHatchingSec();
 
 // 空飛ぶでズイタウンに移動する関数
 void moveToInitialPlayerPosition() {
@@ -125,7 +133,7 @@ void receiveAndHatchEggs(int box_line) {
 void setup() {
     // Switchがマイコンを認識するまでは信号を受け付けないため、適当な処理をさせておく
     pushButton(Button::A, 500, 5);
-    
+
     // マイコンを認識したら、メニューの左上にカーソルを持っていく
     pushButton(Button::X, 750);
     holdHat(Hat::UP_LEFT, 1500);
@@ -147,7 +155,7 @@ void setup() {
 
 // ここに記述した内容がループされ続ける
 void loop() {
-     for (int box_line = 0; box_line < 6; box_line++) {
-         receiveAndHatchEggs(box_line);
-     }
+    for (int box_line = 0; box_line < 6; box_line++) {
+        receiveAndHatchEggs(box_line);
+    }
 }
