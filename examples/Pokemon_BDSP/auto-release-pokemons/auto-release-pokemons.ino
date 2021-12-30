@@ -61,7 +61,7 @@ void releaseBox() {
 
 void setup() {
     // Switchがマイコンを認識するまでは信号を受け付けないため、適当な処理をさせておく
-    pushButton(Button::A, PUSH_BUTTON_DELAY, 5);
+    pushButton(Button::L, PUSH_BUTTON_DELAY, 5);
 
     // マイコンを認識したら、メニューの左上にカーソルを持っていく
     pushButton(Button::X, 750);
