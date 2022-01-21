@@ -19,7 +19,7 @@ const uint16_t INPUT_TIME_TWICE = INPUT_TIME * 2;
  * @param int      delay_time ボタンを押した後の待ち時間（1秒 = 1000）
  * @param int      loop       ボタンを押す回数（省略可、デフォルトは1）
  */
-void pushButton(uint16_t button, int delay_time, int loop) {
+void pushButton(uint16_t button, int delay_time = 0, int loop = 1) {
     for (int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressButton(button);
         SwitchControlLibrary().sendReport();
@@ -53,7 +53,7 @@ void holdButton(uint16_t button, int hold_time) {
  * @param int     delay_time ボタンを押した後の待ち時間（1秒 = 1000）
  * @param int     loop       ボタンを押す回数（省略可、デフォルトは1）
  */
-void pushHat(uint8_t hat, int delay_time, int loop) {
+void pushHat(uint8_t hat, int delay_time = 0, int loop = 1) {
     for (int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressHatButton(hat);
         SwitchControlLibrary().sendReport();
