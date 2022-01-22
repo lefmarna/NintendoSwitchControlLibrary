@@ -241,7 +241,6 @@ void spinLeftStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
     // 処理が終了したら、スティックを倒していない状態に戻す
     SwitchControlLibrary().moveLeftStick(Stick::NEUTRAL, Stick::NEUTRAL);
     SwitchControlLibrary().sendReport();
-    delay(INPUT_TIME);
 }
 
 /**
@@ -301,5 +300,4 @@ void spinRightStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
     // 処理が終了したら、スティックを倒していない状態に戻す
     SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::NEUTRAL);
     SwitchControlLibrary().sendReport();
-    delay(INPUT_TIME);
 }
