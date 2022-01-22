@@ -13,7 +13,7 @@ const uint16_t INPUT_TIME = 100;
 const uint16_t INPUT_TIME_TWICE = INPUT_TIME * 2;
 
 /**
- * Switchコントローラーのボタンを押す
+ * ボタンを押す
  *
  * @param uint16_t button     押すボタン
  * @param int      delay_time ボタンを押した後の待ち時間（1秒 = 1000）
@@ -32,7 +32,7 @@ void pushButton(uint16_t button, int delay_time = 0, int loop = 1) {
 }
 
 /**
- * Switchコントローラーのボタンを指定の時間押し続ける
+ * ボタンを指定の時間押し続ける
  *
  * @param uint16_t button    押し続けるボタン
  * @param int      hold_time ボタンを押す時間の長さ（1秒 = 1000）
@@ -47,7 +47,7 @@ void holdButton(uint16_t button, int hold_time) {
 }
 
 /**
- * Switchコントローラーの十字キーを押す
+ * 十字キーを押す
  *
  * @param uint8_t hat        押す十字キーのボタン
  * @param int     delay_time ボタンを押した後の待ち時間（1秒 = 1000）
@@ -66,7 +66,7 @@ void pushHat(uint8_t hat, int delay_time = 0, int loop = 1) {
 }
 
 /**
- * Switchコントローラーの十字キーを指定の時間押し続ける
+ * 十字キーを指定の時間押し続ける
  *
  * @param uint8_t hat:       押し続ける十字キーのボタン
  * @param int     hold_time: ボタンを押す時間の長さ（1秒 = 1000）
@@ -81,7 +81,7 @@ void holdHat(uint8_t hat, int hold_time) {
 }
 
 /**
- * Switchコントローラーの左スティックを指定の時間傾け続ける
+ * 左スティックを指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
  * @param uint8_t  lx:        左スティックのx軸
@@ -114,7 +114,7 @@ void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button = NULL
 }
 
 /**
- * Switchコントローラーの右スティックを指定の時間傾け続ける
+ * 右スティックを指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
  * @param uint8_t  rx:        右スティックのx軸
@@ -147,7 +147,7 @@ void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button = NUL
 }
 
 /**
- * Switchコントローラーの左スティックと右スティックを同時に指定の時間傾け続ける
+ * 左スティックと右スティックを同時に指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
  * @param uint8_t  lx:        左スティックのx軸
