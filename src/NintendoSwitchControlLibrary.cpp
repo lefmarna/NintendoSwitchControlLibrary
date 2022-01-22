@@ -241,4 +241,65 @@ void spinLeftStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
     // 処理が終了したら、スティックを倒していない状態に戻す
     SwitchControlLibrary().moveLeftStick(Stick::NEUTRAL, Stick::NEUTRAL);
     SwitchControlLibrary().sendReport();
+    delay(INPUT_TIME);
+}
+
+/**
+ * 右スティックをぐるぐると回す
+ *
+ * @param int     spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
+ * @param uint8_t speed:      1秒あたりの回転数
+ * @param bool    direction:  方向（1: 左, 0：右）
+ */
+void spinRightStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
+    // 1秒あたりの回転数から1回転にかかる時間を求める
+    float spin_count_per_second = 1000 / speed;
+
+    // 1回転で8箇所のチェックポイントを回ることになるため、その通過タイムを求める
+    float spin_delay = spin_count_per_second / 8;
+
+    // 回転方向の制御を担う変数を用意する（スティックのx座標をdirectionの値によって左右逆転させる）
+    int x_max;
+    int x_min;
+    if (direction) {
+        x_max = Stick::MAX;
+        x_min = Stick::MIN;
+    } else {
+        x_max = Stick::MIN;
+        x_min = Stick::MAX;
+    }
+
+    // 指定された時間の間、右スティックをぐるぐると回す
+    while (spin_time >= spin_count_per_second) {
+        SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_min, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_min, Stick::NEUTRAL);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_min, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_max, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_max, Stick::NEUTRAL);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_max, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        spin_time = spin_time - spin_count_per_second;
+    }
+
+    // 処理が終了したら、スティックを倒していない状態に戻す
+    SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::NEUTRAL);
+    SwitchControlLibrary().sendReport();
+    delay(INPUT_TIME);
 }

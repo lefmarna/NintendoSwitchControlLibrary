@@ -23,3 +23,4 @@ void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry, int t
 
 // スティックぐるぐるの設定
 void spinLeftStick(int spin_time, uint8_t speed = 5, bool direction = 1);
+void spinRightStick(int spin_time, uint8_t speed = 5, bool direction = 1);
