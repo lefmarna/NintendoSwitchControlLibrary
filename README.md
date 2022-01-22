@@ -222,6 +222,40 @@ Arduino IDE やボードのバージョンは、基本的に最新の安定版�
   Stick::MAX
   ```
 
+### スティックぐるぐる
+
+- 左スティックをぐるぐるするコマンド
+
+  - `spinLeftStick(int spin_time, uint8_t speed = 5, bool direction = 1);`
+
+    - spin_time: ぐるぐるさせる時間（1 回転に満たない端数の時間が生じた場合は切り捨てとなります）
+    - speed: 1 秒あたりの回転数
+    - direction: 方向（1: 左, 0：右）
+
+  - 使用例
+
+    ```
+    spinLeftStick(10000);       // 10秒間左スティックを時計回りで、1秒に5回ぐるぐるする
+    spinLeftStick(30000, 1);    // 30秒間左スティックを時計回りで、1秒に1回ぐるぐるする
+    spinLeftStick(25000, 3, 0); // 25秒間左スティックを反時計回りで、1秒に3回ぐるぐるする
+    ```
+
+- 右スティックをぐるぐるするコマンド
+
+  - `spinRightStick(int spin_time, uint8_t speed = 5, bool direction = 1);`
+
+    - spin_time: ぐるぐるさせる時間（1 回転に満たない端数の時間が生じた場合は切り捨てとなります）
+    - speed: 1 秒あたりの回転数
+    - direction: 方向（1: 左, 0：右）
+
+  - 使用例
+
+    ```
+    spinRightStick(5000);        // 5秒間右スティックを時計回りで、1秒に5回ぐるぐるする
+    spinRightStick(9000, 10, 0); // 9秒間右スティックを反時計回りで、1秒に10回ぐるぐるする
+    spinRightStick(3000, 4, 1);  // 3秒間右スティックを時計回りで、1秒に4回ぐるぐるする
+    ```
+
 ### SwitchControlLibrary を使ったその他のコマンド
 
 このライブラリは SwitchControlLibrary のコマンドも内蔵しているため、合わせて使用することもできます。（**v2 系を採用しています。v1 系とは互換性がないことに注意してください**）

@@ -8,19 +8,18 @@ https://opensource.org/licenses/mit-license.php
 
 // ボタンを押してから離すまでの時間（ミリ秒）
 const uint16_t INPUT_TIME = 100;
+
 // ボタンを連打する際に、押して認識後、離して認識するまでの合計時間（ミリ秒）
 const uint16_t INPUT_TIME_TWICE = INPUT_TIME * 2;
 
-void pushButton(uint16_t button, int delay_time, int loop) {
-    /*
-    Switchコントローラーのボタンを押す関数
-
-    Parameters
-    -------------------
-        button: 押すボタン
-        delay_time: ボタンを押した後の待ち時間（1秒 = 1000）
-        loop: ボタンを押す回数（省略可、デフォルトは1）
-    */
+/**
+ * ボタンを押す
+ *
+ * @param uint16_t button     押すボタン
+ * @param int      delay_time ボタンを押した後の待ち時間（1秒 = 1000）
+ * @param int      loop       ボタンを押す回数（省略可、デフォルトは1）
+ */
+void pushButton(uint16_t button, int delay_time = 0, int loop = 1) {
     for (int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressButton(button);
         SwitchControlLibrary().sendReport();
@@ -32,15 +31,13 @@ void pushButton(uint16_t button, int delay_time, int loop) {
     delay(INPUT_TIME);
 }
 
+/**
+ * ボタンを指定の時間押し続ける
+ *
+ * @param uint16_t button    押し続けるボタン
+ * @param int      hold_time ボタンを押す時間の長さ（1秒 = 1000）
+ */
 void holdButton(uint16_t button, int hold_time) {
-    /*
-    Switchコントローラーのボタンを指定の時間押し続ける関数
-
-    Parameters
-    -------------------
-        button: 押し続けるボタン
-        hold_time: ボタンを押す時間の長さ（1秒 = 1000）
-    */
     SwitchControlLibrary().pressButton(button);
     SwitchControlLibrary().sendReport();
     delay(hold_time);
@@ -49,16 +46,14 @@ void holdButton(uint16_t button, int hold_time) {
     delay(INPUT_TIME);
 }
 
-void pushHat(uint8_t hat, int delay_time, int loop) {
-    /*
-    Switchコントローラーの十字キーを押す関数
-
-    Parameters
-    -------------------
-        hat: 押す十字キーのボタン
-        delay_time: ボタンを押した後の待ち時間（1秒 = 1000）
-        loop: ボタンを押す回数（省略可、デフォルトは1）
-    */
+/**
+ * 十字キーを押す
+ *
+ * @param uint8_t hat        押す十字キーのボタン
+ * @param int     delay_time ボタンを押した後の待ち時間（1秒 = 1000）
+ * @param int     loop       ボタンを押す回数（省略可、デフォルトは1）
+ */
+void pushHat(uint8_t hat, int delay_time = 0, int loop = 1) {
     for (int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressHatButton(hat);
         SwitchControlLibrary().sendReport();
@@ -70,15 +65,13 @@ void pushHat(uint8_t hat, int delay_time, int loop) {
     delay(INPUT_TIME);
 }
 
+/**
+ * 十字キーを指定の時間押し続ける
+ *
+ * @param uint8_t hat:       押し続ける十字キーのボタン
+ * @param int     hold_time: ボタンを押す時間の長さ（1秒 = 1000）
+ */
 void holdHat(uint8_t hat, int hold_time) {
-    /*
-    Switchコントローラーの十字キーを指定の時間押し続ける関数
-
-    Parameters
-    -------------------
-        hat: 押し続ける十字キーのボタン
-        hold_time: ボタンを押す時間の長さ（1秒 = 1000）
-    */
     SwitchControlLibrary().pressHatButton(hat);
     SwitchControlLibrary().sendReport();
     delay(hold_time);
@@ -87,26 +80,20 @@ void holdHat(uint8_t hat, int hold_time) {
     delay(INPUT_TIME);
 }
 
+/**
+ * 左スティックを指定の時間傾け続ける
+ * 128を基準とし、0~255の値を指定する
+ *
+ * @param uint8_t  lx:        左スティックのx軸
+ * @param uint8_t  ly:        左スティックのy軸
+ * @param int      tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t button:    連打するボタン
+ *
+ * @see Stick::MIN       0
+ * @see Stick::NEUTRAL 128
+ * @see Stick::MAX     255
+ */
 void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button = NULL) {
-    /*
-    Switchコントローラーの左スティックを指定の時間傾け続ける関数
-    128を基準とし、0~255の値を指定する
-
-    ボタンを指定すると、そのボタンを連打しながらスティックを倒し続ける動作となる
-
-    Parameters
-    -------------------
-        lx: 左スティックのx軸
-        ly: 左スティックのy軸
-        tilt_time: スティックを傾ける時間の長さ
-        button: 連打するボタン
-
-    Options
-    -------------------
-          0: Stick::MIN
-        128: Stick::NEUTRAL
-        255: Stick::MAX
-    */
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().sendReport();
     if (button) {
@@ -126,26 +113,20 @@ void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button = NULL
     delay(INPUT_TIME);
 }
 
+/**
+ * 右スティックを指定の時間傾け続ける
+ * 128を基準とし、0~255の値を指定する
+ *
+ * @param uint8_t  rx:        右スティックのx軸
+ * @param uint8_t  ry:        右スティックのy軸
+ * @param int      tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t button:    連打するボタン
+ *
+ * @see Stick::MIN       0
+ * @see Stick::NEUTRAL 128
+ * @see Stick::MAX     255
+ */
 void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button = NULL) {
-    /*
-    Switchコントローラーの右スティックを指定の時間傾け続ける関数
-    128を基準とし、0~255の値を指定する
-
-    ボタンを指定すると、そのボタンを連打しながらスティックを倒し続ける動作となる
-
-    Parameters
-    -------------------
-        rx: 右スティックのx軸
-        ry: 右スティックのy軸
-        tilt_time: スティックを傾ける時間の長さ
-        button: 連打するボタン
-
-    Options
-    -------------------
-          0: Stick::MIN
-        128: Stick::NEUTRAL
-        255: Stick::MAX
-    */
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
     if (button) {
@@ -165,29 +146,23 @@ void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button = NUL
     delay(INPUT_TIME);
 }
 
+/**
+ * 左スティックと右スティックを同時に指定の時間傾け続ける
+ * 128を基準とし、0~255の値を指定する
+ *
+ * @param uint8_t  lx:        左スティックのx軸
+ * @param uint8_t  ly:        左スティックのy軸
+ * @param uint8_t  rx:        右スティックのx軸
+ * @param uint8_t  ry:        右スティックのy軸
+ * @param int      tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t button:    連打するボタン
+ *
+ * @see Stick::MIN       0
+ * @see Stick::NEUTRAL 128
+ * @see Stick::MAX     255
+ */
 void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
                            int tilt_time, uint16_t button = NULL) {
-    /*
-    Switchコントローラーの左スティックと右スティックを同時に指定の時間傾け続ける関数
-    128を基準とし、0~255の値を指定する
-
-    ボタンを指定すると、そのボタンを連打しながらスティックを倒し続ける動作となる
-
-    Parameters
-    -------------------
-        lx: 左スティックのx軸
-        ly: 左スティックのy軸
-        rx: 右スティックのx軸
-        ry: 右スティックのy軸
-        tilt_time: スティックを傾ける時間の長さ
-        button: 連打するボタン
-
-    Options
-    -------------------
-          0: Stick::MIN
-        128: Stick::NEUTRAL
-        255: Stick::MAX
-    */
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
@@ -204,6 +179,126 @@ void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
     }
     delay(tilt_time);
     SwitchControlLibrary().moveLeftStick(Stick::NEUTRAL, Stick::NEUTRAL);
+    SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::NEUTRAL);
+    SwitchControlLibrary().sendReport();
+    delay(INPUT_TIME);
+}
+
+/**
+ * 左スティックをぐるぐると回す
+ *
+ * @param int     spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
+ * @param uint8_t speed:      1秒あたりの回転数
+ * @param bool    direction:  方向（1: 左, 0：右）
+ */
+void spinLeftStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
+    // 1秒あたりの回転数から1回転にかかる時間を求める
+    float spin_count_per_second = 1000 / speed;
+
+    // 1回転で8箇所のチェックポイントを回ることになるため、その通過タイムを求める
+    float spin_delay = spin_count_per_second / 8;
+
+    // 回転方向の制御を担う変数を用意する（スティックのx座標をdirectionの値によって左右逆転させる）
+    int x_max;
+    int x_min;
+    if (direction) {
+        x_max = Stick::MAX;
+        x_min = Stick::MIN;
+    } else {
+        x_max = Stick::MIN;
+        x_min = Stick::MAX;
+    }
+
+    // 指定された時間の間、左スティックをぐるぐると回す
+    while (spin_time >= spin_count_per_second) {
+        SwitchControlLibrary().moveLeftStick(Stick::NEUTRAL, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveLeftStick(x_min, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveLeftStick(x_min, Stick::NEUTRAL);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveLeftStick(x_min, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveLeftStick(Stick::NEUTRAL, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveLeftStick(x_max, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveLeftStick(x_max, Stick::NEUTRAL);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveLeftStick(x_max, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        spin_time = spin_time - spin_count_per_second;
+    }
+
+    // 処理が終了したら、スティックを倒していない状態に戻す
+    SwitchControlLibrary().moveLeftStick(Stick::NEUTRAL, Stick::NEUTRAL);
+    SwitchControlLibrary().sendReport();
+    delay(INPUT_TIME);
+}
+
+/**
+ * 右スティックをぐるぐると回す
+ *
+ * @param int     spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
+ * @param uint8_t speed:      1秒あたりの回転数
+ * @param bool    direction:  方向（1: 左, 0：右）
+ */
+void spinRightStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
+    // 1秒あたりの回転数から1回転にかかる時間を求める
+    float spin_count_per_second = 1000 / speed;
+
+    // 1回転で8箇所のチェックポイントを回ることになるため、その通過タイムを求める
+    float spin_delay = spin_count_per_second / 8;
+
+    // 回転方向の制御を担う変数を用意する（スティックのx座標をdirectionの値によって左右逆転させる）
+    int x_max;
+    int x_min;
+    if (direction) {
+        x_max = Stick::MAX;
+        x_min = Stick::MIN;
+    } else {
+        x_max = Stick::MIN;
+        x_min = Stick::MAX;
+    }
+
+    // 指定された時間の間、右スティックをぐるぐると回す
+    while (spin_time >= spin_count_per_second) {
+        SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_min, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_min, Stick::NEUTRAL);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_min, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_max, Stick::MIN);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_max, Stick::NEUTRAL);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        SwitchControlLibrary().moveRightStick(x_max, Stick::MAX);
+        SwitchControlLibrary().sendReport();
+        delay(spin_delay);
+        spin_time = spin_time - spin_count_per_second;
+    }
+
+    // 処理が終了したら、スティックを倒していない状態に戻す
     SwitchControlLibrary().moveRightStick(Stick::NEUTRAL, Stick::NEUTRAL);
     SwitchControlLibrary().sendReport();
     delay(INPUT_TIME);
