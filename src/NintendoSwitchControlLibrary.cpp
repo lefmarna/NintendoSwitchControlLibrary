@@ -19,7 +19,7 @@ const uint16_t INPUT_TIME_TWICE = INPUT_TIME * 2;
  * @param int      delay_time ボタンを押した後の待ち時間（1秒 = 1000）
  * @param int      loop       ボタンを押す回数（省略可、デフォルトは1）
  */
-void pushButton(uint16_t button, int delay_time = 0, int loop = 1) {
+void pushButton(uint16_t button, int delay_time, int loop) {
     for (int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressButton(button);
         SwitchControlLibrary().sendReport();
@@ -53,7 +53,7 @@ void holdButton(uint16_t button, int hold_time) {
  * @param int     delay_time ボタンを押した後の待ち時間（1秒 = 1000）
  * @param int     loop       ボタンを押す回数（省略可、デフォルトは1）
  */
-void pushHat(uint8_t hat, int delay_time = 0, int loop = 1) {
+void pushHat(uint8_t hat, int delay_time, int loop) {
     for (int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressHatButton(hat);
         SwitchControlLibrary().sendReport();
@@ -93,7 +93,7 @@ void holdHat(uint8_t hat, int hold_time) {
  * @see Stick::NEUTRAL 128
  * @see Stick::MAX     255
  */
-void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button = NULL) {
+void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button) {
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().sendReport();
     if (button) {
@@ -126,7 +126,7 @@ void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button = NULL
  * @see Stick::NEUTRAL 128
  * @see Stick::MAX     255
  */
-void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button = NULL) {
+void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button) {
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
     if (button) {
@@ -162,7 +162,7 @@ void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button = NUL
  * @see Stick::MAX     255
  */
 void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
-                           int tilt_time, uint16_t button = NULL) {
+                           int tilt_time, uint16_t button) {
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
@@ -191,7 +191,7 @@ void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
  * @param uint8_t speed:      1秒あたりの回転数
  * @param bool    direction:  方向（1: 左, 0：右）
  */
-void spinLeftStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
+void spinLeftStick(int spin_time, uint8_t speed, bool direction) {
     // 1秒あたりの回転数から1回転にかかる時間を求める
     float spin_count_per_second = 1000 / speed;
 
@@ -250,7 +250,7 @@ void spinLeftStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
  * @param uint8_t speed:      1秒あたりの回転数
  * @param bool    direction:  方向（1: 左, 0：右）
  */
-void spinRightStick(int spin_time, uint8_t speed = 5, bool direction = 1) {
+void spinRightStick(int spin_time, uint8_t speed, bool direction) {
     // 1秒あたりの回転数から1回転にかかる時間を求める
     float spin_count_per_second = 1000 / speed;
 
