@@ -28,9 +28,9 @@ bool hasNintendoSwitchOnlineMenu(int systemVersion) {
 // 設定 > 本体 に ドックの更新 メニューが存在するか
 bool hasDockUpdateMenu(int systemVersion, bool isSwitchLite) {
     if (isSwitchLite) {
-      return false;
+        return false;
     } else {
-      return systemVersion >= 13;
+        return systemVersion >= 13;
     }
 }
 
@@ -42,18 +42,18 @@ void execWattGainSequence() {
     pushButton(Button::HOME, 500);
     pushHat(Hat::DOWN, 25);
     if (hasNintendoSwitchOnlineMenu(SWITCH_SYSTEM_VERSION)) {
-      pushHat(Hat::RIGHT, 25, 5);
+        pushHat(Hat::RIGHT, 25, 5);
     } else {
-      pushHat(Hat::RIGHT, 25, 4);
+        pushHat(Hat::RIGHT, 25, 4);
     }
     pushButton(Button::A, 100);
     // 設定 > 本体 > 日付と時刻
     holdHat(Hat::DOWN, 2000);
     pushHat(Hat::RIGHT, 25);
     if (hasDockUpdateMenu(SWITCH_SYSTEM_VERSION, IS_SWITCH_LITE)) {
-      pushHat(Hat::DOWN, 25, 9);
+        pushHat(Hat::DOWN, 25, 9);
     } else {
-      pushHat(Hat::DOWN, 25, 4);
+        pushHat(Hat::DOWN, 25, 4);
     }
     pushButton(Button::A, 200);
     // 日付と時刻 > 現在の日付と時刻
@@ -68,7 +68,7 @@ void execWattGainSequence() {
     pushButton(Button::A, 600);
     // レイド募集中止
     pushButton(Button::B, 1000);
-    pushButton(Button::A, 4000);
+    pushButton(Button::A, 6000);
     // ワット回収
     pushButton(Button::A, 1000);
     pushButton(Button::B, 1000);  // ここをBにすることで、月が変わった際にキャンセルできず詰んでしまう問題をスマートに解決できる

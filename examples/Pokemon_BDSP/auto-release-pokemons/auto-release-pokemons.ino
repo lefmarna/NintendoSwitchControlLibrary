@@ -70,7 +70,7 @@ void setup() {
     // ボックスを開く
     pushHat(Hat::RIGHT, PUSH_HAT_DELAY);
     pushButton(Button::A, 1250);
-    pushButton(Button::R, 1500);
+    pushButton(Button::R, 2500);
 }
 
 int loopCount = 0;
