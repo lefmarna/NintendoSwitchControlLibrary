@@ -69,7 +69,7 @@ void runAround(int run_time_sec) {
 
 // タマゴが孵化するのを待つ関数
 void waitEggHatching() {
-    pushButton(Button::B, 500, 30);
+    pushButton(Button::A, 500, 30);
     delay(4000);
 }
 
