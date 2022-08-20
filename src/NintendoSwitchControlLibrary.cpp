@@ -84,16 +84,16 @@ void holdHat(uint8_t hat, int hold_time) {
  * 左スティックを指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
- * @param uint8_t  lx:        左スティックのx軸
- * @param uint8_t  ly:        左スティックのy軸
- * @param int      tilt_time: スティックを傾ける時間の長さ
- * @param uint16_t button:    連打するボタン
+ * @param uint8_t       lx:        左スティックのx軸
+ * @param uint8_t       ly:        左スティックのy軸
+ * @param unsigned long tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t      button:    連打するボタン
  *
  * @see Stick::MIN       0
  * @see Stick::NEUTRAL 128
  * @see Stick::MAX     255
  */
-void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button) {
+void tiltLeftStick(uint8_t lx, uint8_t ly, unsigned long tilt_time, uint16_t button) {
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().sendReport();
     if (button) {
@@ -117,16 +117,16 @@ void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button) {
  * 右スティックを指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
- * @param uint8_t  rx:        右スティックのx軸
- * @param uint8_t  ry:        右スティックのy軸
- * @param int      tilt_time: スティックを傾ける時間の長さ
- * @param uint16_t button:    連打するボタン
+ * @param uint8_t       rx:        右スティックのx軸
+ * @param uint8_t       ry:        右スティックのy軸
+ * @param unsigned long tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t      button:    連打するボタン
  *
  * @see Stick::MIN       0
  * @see Stick::NEUTRAL 128
  * @see Stick::MAX     255
  */
-void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button) {
+void tiltRightStick(uint8_t rx, uint8_t ry, unsigned long tilt_time, uint16_t button) {
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
     if (button) {
@@ -150,19 +150,19 @@ void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button) {
  * 左スティックと右スティックを同時に指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
- * @param uint8_t  lx:        左スティックのx軸
- * @param uint8_t  ly:        左スティックのy軸
- * @param uint8_t  rx:        右スティックのx軸
- * @param uint8_t  ry:        右スティックのy軸
- * @param int      tilt_time: スティックを傾ける時間の長さ
- * @param uint16_t button:    連打するボタン
+ * @param uint8_t       lx:        左スティックのx軸
+ * @param uint8_t       ly:        左スティックのy軸
+ * @param uint8_t       rx:        右スティックのx軸
+ * @param uint8_t       ry:        右スティックのy軸
+ * @param unsigned long tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t      button:    連打するボタン
  *
  * @see Stick::MIN       0
  * @see Stick::NEUTRAL 128
  * @see Stick::MAX     255
  */
 void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
-                           int tilt_time, uint16_t button) {
+                           unsigned long tilt_time, uint16_t button) {
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
