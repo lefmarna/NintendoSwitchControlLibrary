@@ -18,5 +18,5 @@ void tiltLeftStick(uint8_t lx, uint8_t ly, unsigned long tilt_time, uint16_t but
 void tiltRightStick(uint8_t rx, uint8_t ry, unsigned long tilt_time, uint16_t button = 0);
 void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry, unsigned long tilt_time, uint16_t button = 0);
 
-void spinLeftStick(int spin_time, uint8_t speed = 5, bool direction = 1);
-void spinRightStick(int spin_time, uint8_t speed = 5, bool direction = 1);
+void spinLeftStick(unsigned long spin_time, uint8_t speed = 5, bool direction = 1);
+void spinRightStick(unsigned long spin_time, uint8_t speed = 5, bool direction = 1);

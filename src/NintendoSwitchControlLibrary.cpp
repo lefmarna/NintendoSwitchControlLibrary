@@ -187,11 +187,11 @@ void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
 /**
  * 左スティックをぐるぐると回す
  *
- * @param int     spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
- * @param uint8_t speed:      1秒あたりの回転数
- * @param bool    direction:  方向（1: 時計回り, 0：反時計回り）
+ * @param unsigned long spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
+ * @param uint8_t       speed:      1秒あたりの回転数
+ * @param bool          direction:  方向（1: 時計回り, 0：反時計回り）
  */
-void spinLeftStick(int spin_time, uint8_t speed, bool direction) {
+void spinLeftStick(unsigned long spin_time, uint8_t speed, bool direction) {
     // 1秒あたりの回転数から1回転にかかる時間を求める
     float spin_count_per_second = 1000 / speed;
 
@@ -246,11 +246,11 @@ void spinLeftStick(int spin_time, uint8_t speed, bool direction) {
 /**
  * 右スティックをぐるぐると回す
  *
- * @param int     spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
- * @param uint8_t speed:      1秒あたりの回転数
- * @param bool    direction:  方向（1: 左, 0：右）
+ * @param unsigned long spin_time: ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
+ * @param uint8_t       speed:     1秒あたりの回転数
+ * @param bool          direction: 方向（1: 左, 0：右）
  */
-void spinRightStick(int spin_time, uint8_t speed, bool direction) {
+void spinRightStick(unsigned long spin_time, uint8_t speed, bool direction) {
     // 1秒あたりの回転数から1回転にかかる時間を求める
     float spin_count_per_second = 1000 / speed;
 
