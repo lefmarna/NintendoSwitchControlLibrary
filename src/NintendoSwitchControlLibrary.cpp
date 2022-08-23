@@ -15,12 +15,12 @@ const uint16_t INPUT_TIME_TWICE = INPUT_TIME * 2;
 /**
  * ボタンを押す
  *
- * @param uint16_t button     押すボタン
- * @param int      delay_time ボタンを押した後の待ち時間（1秒 = 1000）
- * @param int      loop       ボタンを押す回数（省略可、デフォルトは1）
+ * @param uint16_t      button     押すボタン
+ * @param unsigned long delay_time ボタンを押した後の待ち時間（1秒 = 1000）
+ * @param unsigned int  loop       ボタンを押す回数（省略可、デフォルトは1）
  */
-void pushButton(uint16_t button, int delay_time, int loop) {
-    for (int i = 0; i < loop; i++) {
+void pushButton(uint16_t button, unsigned long delay_time, unsigned int loop) {
+    for (unsigned int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressButton(button);
         SwitchControlLibrary().sendReport();
         delay(INPUT_TIME);
@@ -34,10 +34,10 @@ void pushButton(uint16_t button, int delay_time, int loop) {
 /**
  * ボタンを指定の時間押し続ける
  *
- * @param uint16_t button    押し続けるボタン
- * @param int      hold_time ボタンを押す時間の長さ（1秒 = 1000）
+ * @param uint16_t      button    押し続けるボタン
+ * @param unsigned long hold_time ボタンを押す時間の長さ（1秒 = 1000）
  */
-void holdButton(uint16_t button, int hold_time) {
+void holdButton(uint16_t button, unsigned long hold_time) {
     SwitchControlLibrary().pressButton(button);
     SwitchControlLibrary().sendReport();
     delay(hold_time);
@@ -49,12 +49,12 @@ void holdButton(uint16_t button, int hold_time) {
 /**
  * 十字キーを押す
  *
- * @param uint8_t hat        押す十字キーのボタン
- * @param int     delay_time ボタンを押した後の待ち時間（1秒 = 1000）
- * @param int     loop       ボタンを押す回数（省略可、デフォルトは1）
+ * @param uint8_t       hat        押す十字キーのボタン
+ * @param unsigned long delay_time ボタンを押した後の待ち時間（1秒 = 1000）
+ * @param unsigned int  loop       ボタンを押す回数（省略可、デフォルトは1）
  */
-void pushHat(uint8_t hat, int delay_time, int loop) {
-    for (int i = 0; i < loop; i++) {
+void pushHat(uint8_t hat, unsigned long delay_time, unsigned int loop) {
+    for (unsigned int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressHatButton(hat);
         SwitchControlLibrary().sendReport();
         delay(INPUT_TIME);
@@ -68,10 +68,10 @@ void pushHat(uint8_t hat, int delay_time, int loop) {
 /**
  * 十字キーを指定の時間押し続ける
  *
- * @param uint8_t hat:       押し続ける十字キーのボタン
- * @param int     hold_time: ボタンを押す時間の長さ（1秒 = 1000）
+ * @param uint8_t       hat:       押し続ける十字キーのボタン
+ * @param unsigned long hold_time: ボタンを押す時間の長さ（1秒 = 1000）
  */
-void holdHat(uint8_t hat, int hold_time) {
+void holdHat(uint8_t hat, unsigned long hold_time) {
     SwitchControlLibrary().pressHatButton(hat);
     SwitchControlLibrary().sendReport();
     delay(hold_time);
@@ -84,16 +84,16 @@ void holdHat(uint8_t hat, int hold_time) {
  * 左スティックを指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
- * @param uint8_t  lx:        左スティックのx軸
- * @param uint8_t  ly:        左スティックのy軸
- * @param int      tilt_time: スティックを傾ける時間の長さ
- * @param uint16_t button:    連打するボタン
+ * @param uint8_t       lx:        左スティックのx軸
+ * @param uint8_t       ly:        左スティックのy軸
+ * @param unsigned long tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t      button:    連打するボタン
  *
  * @see Stick::MIN       0
  * @see Stick::NEUTRAL 128
  * @see Stick::MAX     255
  */
-void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button) {
+void tiltLeftStick(uint8_t lx, uint8_t ly, unsigned long tilt_time, uint16_t button) {
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().sendReport();
     if (button) {
@@ -117,16 +117,16 @@ void tiltLeftStick(uint8_t lx, uint8_t ly, int tilt_time, uint16_t button) {
  * 右スティックを指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
- * @param uint8_t  rx:        右スティックのx軸
- * @param uint8_t  ry:        右スティックのy軸
- * @param int      tilt_time: スティックを傾ける時間の長さ
- * @param uint16_t button:    連打するボタン
+ * @param uint8_t       rx:        右スティックのx軸
+ * @param uint8_t       ry:        右スティックのy軸
+ * @param unsigned long tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t      button:    連打するボタン
  *
  * @see Stick::MIN       0
  * @see Stick::NEUTRAL 128
  * @see Stick::MAX     255
  */
-void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button) {
+void tiltRightStick(uint8_t rx, uint8_t ry, unsigned long tilt_time, uint16_t button) {
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
     if (button) {
@@ -150,19 +150,19 @@ void tiltRightStick(uint8_t rx, uint8_t ry, int tilt_time, uint16_t button) {
  * 左スティックと右スティックを同時に指定の時間傾け続ける
  * 128を基準とし、0~255の値を指定する
  *
- * @param uint8_t  lx:        左スティックのx軸
- * @param uint8_t  ly:        左スティックのy軸
- * @param uint8_t  rx:        右スティックのx軸
- * @param uint8_t  ry:        右スティックのy軸
- * @param int      tilt_time: スティックを傾ける時間の長さ
- * @param uint16_t button:    連打するボタン
+ * @param uint8_t       lx:        左スティックのx軸
+ * @param uint8_t       ly:        左スティックのy軸
+ * @param uint8_t       rx:        右スティックのx軸
+ * @param uint8_t       ry:        右スティックのy軸
+ * @param unsigned long tilt_time: スティックを傾ける時間の長さ
+ * @param uint16_t      button:    連打するボタン
  *
  * @see Stick::MIN       0
  * @see Stick::NEUTRAL 128
  * @see Stick::MAX     255
  */
 void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
-                           int tilt_time, uint16_t button) {
+                           unsigned long tilt_time, uint16_t button) {
     SwitchControlLibrary().moveLeftStick(lx, ly);
     SwitchControlLibrary().moveRightStick(rx, ry);
     SwitchControlLibrary().sendReport();
@@ -187,11 +187,11 @@ void tiltLeftAndRightStick(uint8_t lx, uint8_t ly, uint8_t rx, uint8_t ry,
 /**
  * 左スティックをぐるぐると回す
  *
- * @param int     spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
- * @param uint8_t speed:      1秒あたりの回転数
- * @param bool    direction:  方向（1: 時計回り, 0：反時計回り）
+ * @param unsigned long spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
+ * @param uint8_t       speed:      1秒あたりの回転数
+ * @param bool          direction:  方向（1: 時計回り, 0：反時計回り）
  */
-void spinLeftStick(int spin_time, uint8_t speed, bool direction) {
+void spinLeftStick(unsigned long spin_time, uint8_t speed, bool direction) {
     // 1秒あたりの回転数から1回転にかかる時間を求める
     float spin_count_per_second = 1000 / speed;
 
@@ -246,11 +246,11 @@ void spinLeftStick(int spin_time, uint8_t speed, bool direction) {
 /**
  * 右スティックをぐるぐると回す
  *
- * @param int     spin_time:  ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
- * @param uint8_t speed:      1秒あたりの回転数
- * @param bool    direction:  方向（1: 左, 0：右）
+ * @param unsigned long spin_time: ぐるぐるさせる時間（1回転に満たない端数の時間が生じた場合は切り捨てとなります）
+ * @param uint8_t       speed:     1秒あたりの回転数
+ * @param bool          direction: 方向（1: 左, 0：右）
  */
-void spinRightStick(int spin_time, uint8_t speed, bool direction) {
+void spinRightStick(unsigned long spin_time, uint8_t speed, bool direction) {
     // 1秒あたりの回転数から1回転にかかる時間を求める
     float spin_count_per_second = 1000 / speed;
 
