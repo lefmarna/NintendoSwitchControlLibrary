@@ -15,12 +15,12 @@ const uint16_t INPUT_TIME_TWICE = INPUT_TIME * 2;
 /**
  * ボタンを押す
  *
- * @param uint16_t button     押すボタン
- * @param int      delay_time ボタンを押した後の待ち時間（1秒 = 1000）
- * @param int      loop       ボタンを押す回数（省略可、デフォルトは1）
+ * @param uint16_t      button     押すボタン
+ * @param unsigned long delay_time ボタンを押した後の待ち時間（1秒 = 1000）
+ * @param unsigned int  loop       ボタンを押す回数（省略可、デフォルトは1）
  */
-void pushButton(uint16_t button, int delay_time, int loop) {
-    for (int i = 0; i < loop; i++) {
+void pushButton(uint16_t button, unsigned long delay_time, unsigned int loop) {
+    for (unsigned int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressButton(button);
         SwitchControlLibrary().sendReport();
         delay(INPUT_TIME);
@@ -34,10 +34,10 @@ void pushButton(uint16_t button, int delay_time, int loop) {
 /**
  * ボタンを指定の時間押し続ける
  *
- * @param uint16_t button    押し続けるボタン
- * @param int      hold_time ボタンを押す時間の長さ（1秒 = 1000）
+ * @param uint16_t      button    押し続けるボタン
+ * @param unsigned long hold_time ボタンを押す時間の長さ（1秒 = 1000）
  */
-void holdButton(uint16_t button, int hold_time) {
+void holdButton(uint16_t button, unsigned long hold_time) {
     SwitchControlLibrary().pressButton(button);
     SwitchControlLibrary().sendReport();
     delay(hold_time);
@@ -49,12 +49,12 @@ void holdButton(uint16_t button, int hold_time) {
 /**
  * 十字キーを押す
  *
- * @param uint8_t hat        押す十字キーのボタン
- * @param int     delay_time ボタンを押した後の待ち時間（1秒 = 1000）
- * @param int     loop       ボタンを押す回数（省略可、デフォルトは1）
+ * @param uint8_t       hat        押す十字キーのボタン
+ * @param unsigned long delay_time ボタンを押した後の待ち時間（1秒 = 1000）
+ * @param unsigned int  loop       ボタンを押す回数（省略可、デフォルトは1）
  */
-void pushHat(uint8_t hat, int delay_time, int loop) {
-    for (int i = 0; i < loop; i++) {
+void pushHat(uint8_t hat, unsigned long delay_time, unsigned int loop) {
+    for (unsigned int i = 0; i < loop; i++) {
         SwitchControlLibrary().pressHatButton(hat);
         SwitchControlLibrary().sendReport();
         delay(INPUT_TIME);
@@ -68,10 +68,10 @@ void pushHat(uint8_t hat, int delay_time, int loop) {
 /**
  * 十字キーを指定の時間押し続ける
  *
- * @param uint8_t hat:       押し続ける十字キーのボタン
- * @param int     hold_time: ボタンを押す時間の長さ（1秒 = 1000）
+ * @param uint8_t       hat:       押し続ける十字キーのボタン
+ * @param unsigned long hold_time: ボタンを押す時間の長さ（1秒 = 1000）
  */
-void holdHat(uint8_t hat, int hold_time) {
+void holdHat(uint8_t hat, unsigned long hold_time) {
     SwitchControlLibrary().pressHatButton(hat);
     SwitchControlLibrary().sendReport();
     delay(hold_time);
